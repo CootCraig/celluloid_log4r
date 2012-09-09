@@ -1,0 +1,79 @@
+---
+log4r_config:
+  loggers:
+    - name      : base
+      level     : DEBUG
+      additive  : 'true'
+      outputters:
+        - file_debug
+        - console_debug
+    - name      :  base::App
+      additive  : 'true'
+    - name      :  base::Celluloid
+      additive  : 'true'
+    - name      :  base::EventReader
+      level     : DEBUG
+      additive  : 'false'
+      outputters:
+        - file_debug
+        - console_debug
+    - name      :  base::EventHandler
+      level     : DEBUG
+      additive  : 'false'
+      outputters:
+        - file_debug
+        - console_debug
+    - name      :  base::VerboseExample
+      level     : DEBUG
+      additive  : 'false'
+      outputters:
+        - file_debug
+        - console_debug
+    - name      :  base::InfoExample
+      level     : INFO
+      additive  : 'false'
+      outputters:
+        - file_info
+        - console_info
+  outputters:
+    - type     : StdoutOutputter
+      name     : console_info
+      level    : INFO
+      formatter:
+        date_pattern: '%Y-%m-%d %H:%M:%S'
+        pattern     : '%C %l %d :: %m'
+        type        : PatternFormatter
+    - type     : StdoutOutputter
+      name     : console_debug
+      level    : DEBUG
+      formatter:
+        date_pattern: '%Y-%m-%d %H:%M:%S'
+        pattern     : '%C %l %d :: %m'
+        type        : PatternFormatter
+    - type        : RollingFileOutputter
+      name        : file_info
+      level       : INFO
+      filename    : "reel_log4r.log"
+      maxsize     : 8388608
+      max_backups : 6
+      trunc       : 'false'
+      formatter   :
+        date_pattern: '%Y-%m-%d %H:%M:%S'
+        pattern     : '%C %l %d :: %m'
+        type        : PatternFormatter
+    - type        : RollingFileOutputter
+      name        : file_debug
+      level       : DEBUG
+      filename    : "reel_log4r.log"
+      maxsize     : 8388608
+      max_backups : 6
+      trunc       : 'false'
+      formatter   :
+        date_pattern: '%Y-%m-%d %H:%M:%S'
+        pattern     : '%C %l %d :: %m'
+        type        : PatternFormatter
+---
+
+
+
+
