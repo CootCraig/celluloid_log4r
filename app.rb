@@ -23,13 +23,15 @@ class EventSource
 end
 class EventHandler
   include Celluloid
+  include Celluloid::Logger
+
   def event count
-    puts "EventHandler.event: count #{count}"
+    info "EventHandler.event: count #{count}"
   end
 end
 class App
   @@logger = nil
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
 
   def self.setup
     @@app_config_file = File.expand_path('app.yml')
@@ -37,7 +39,6 @@ class App
     Log4r::YamlConfigurator.load_yaml_file @@app_config_file
     @@logger = Log4r::Logger['base']
     Celluloid.logger = @@logger
-    puts "@@logger.class #{@@logger.class}"
     logger.debug "App::setup version #{App::VERSION}"
   end
   def self.run

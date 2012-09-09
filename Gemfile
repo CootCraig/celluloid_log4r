@@ -1,7 +1,4 @@
 source "http://rubygems.org"
-gem "reel"
-gem "octarine"
+gem "celluloid"
 gem "log4r"
-
-gem "debugger"
 
